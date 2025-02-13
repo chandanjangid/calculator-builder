@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Sidebar (for Drag-and-Drop Components) === */
+.sidebar {
+  @apply fixed left-0 top-0 h-full w-36 bg-gray-900 p-5 shadow-xl flex flex-col items-center gap-4 border-r border-gray-700;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* === Sidebar Title === */
+.sidebar-title {
+  @apply text-white text-lg font-semibold tracking-wide uppercase mb-3;
+}
+
+/* === Colorful Draggable Buttons in Sidebar === */
+.draggable-button {
+  @apply text-white text-lg font-bold py-3 px-5 w-full text-center rounded-xl shadow-md cursor-pointer transition-all duration-300 ease-in-out;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* === Different Colors for Each Button === */
+.draggable-button:nth-child(1) { background: linear-gradient(to bottom, #ff7eb3, #ff5470); } /* Pink */
+.draggable-button:nth-child(2) { background: linear-gradient(to bottom, #ffcc00, #e6b800); } /* Yellow */
+.draggable-button:nth-child(3) { background: linear-gradient(to bottom, #00c853, #009624); } /* Green */
+.draggable-button:nth-child(4) { background: linear-gradient(to bottom, #3b82f6, #2563eb); } /* Blue */
+.draggable-button:nth-child(5) { background: linear-gradient(to bottom, #8b5cf6, #7c3aed); } /* Purple */
+.draggable-button:nth-child(6) { background: linear-gradient(to bottom, #ff3d00, #dd2c00); } /* Red */
+
+/* === Button Hover & Click Effects === */
+.draggable-button:hover {
+  @apply scale-110;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.draggable-button:active {
+  @apply scale-95;
+}
+
+/* === When Dragging === */
+.draggable-button.dragging {
+  opacity: 0.6;
+  transform: scale(1.1);
+  animation: dragEffect 0.5s infinite alternate;
+}
+
+/* === Drop Target (Calculator Area) === */
+.calculator-container {
+  @apply bg-gray-900 p-6 rounded-3xl shadow-xl w-full max-w-xs backdrop-blur-lg border border-gray-700 ml-40;
+}
+
+/* === Animation when a button is dropped in the calculator === */
+.calculator-buttons.dropping {
+  animation: dropEffect 0.5s ease-in-out;
+}
+
+/* === Display Section === */
+.calculator-display {
+  @apply bg-gray-800 text-white text-3xl font-mono p-4 rounded-lg text-right mb-4 shadow-inner border border-gray-600;
+  animation: glow 1.5s infinite alternate;
+}
+
+/* === Button Grid (Dropped Buttons) === */
+.calculator-buttons {
+  @apply grid grid-cols-4 gap-3 p-2 min-h-[120px] border border-gray-700 rounded-lg bg-gray-800 shadow-md;
+}
+
+/* === Animations === */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #ffffff33; }
+  100% { box-shadow: 0 0 20px #ffffff66; }
+}
+
+@keyframes dragEffect {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes dropEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
