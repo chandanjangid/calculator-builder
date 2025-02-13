@@ -2,8 +2,10 @@ import { useState } from "react";
 import { DndProvider, useDrop } from "react-dnd";
 import { create } from "zustand";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { evaluate } from "mathjs";  
 import DraggableButton from "./DraggableButton";
 import ComponentPalette from "./ComponentPalette";
+import "./index.css";
 
 const useCalculatorStore = create((set) => ({
   components: [],
@@ -26,7 +28,7 @@ const Calculator = () => {
 
   const evaluateExpression = () => {
     try {
-      setExpression(eval(expression).toString());
+      setExpression(evaluate(expression).toString());  
     } catch {
       setExpression("Error");
     }
